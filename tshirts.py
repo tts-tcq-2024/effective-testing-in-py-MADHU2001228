@@ -13,7 +13,7 @@ assert(size(40) == 'M')
 assert(size(43) == 'L')
 
 # boundary issues
-assert(size(38) == 'L')
+assert(size(38) == 'S')
  
 
 print("All is well (maybe!)\n")
