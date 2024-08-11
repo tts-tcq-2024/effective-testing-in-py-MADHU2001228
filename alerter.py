@@ -21,5 +21,7 @@ def alert_in_celcius(farenheit):
 
 alert_in_celcius(400.5)
 alert_in_celcius(303.6)
+expected_failures = 1 
+assert(alert_failure_count == expected_failures), f"Expected {expected_failures} failures, but got {alert_failure_count}."
 print(f'{alert_failure_count} alerts failed.')
 print('All is well (maybe!)')
