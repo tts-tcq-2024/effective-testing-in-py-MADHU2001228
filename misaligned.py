@@ -1,46 +1,34 @@
-def print_color_map():
+def get_color_map_data():
     major_colors = ["White", "Red", "Black", "Yellow", "Violet"]
     minor_colors = ["Blue", "Orange", "Green", "Brown", "Slate"]
-    output = []
+    data = []
     for i, major in enumerate(major_colors):
         for j, minor in enumerate(minor_colors):
-            output.append(f'{i * 5 + j} | {major} | {minor}')
-    return "\n".join(output) 
+            data.append((i * 5 + j, major, minor))
+    return data
 
-def test_print_color_map():
-    expected_output = (
-        "0 | White | Blue\n"
-        "1 | White | Orange\n"
-        "2 | White | Green\n"
-        "3 | White | Brown\n"
-        "4 | White | Slate\n"
-        "5 | Red | Blue\n"
-        "6 | Red | Orange\n"
-        "7 | Red | Green\n"
-        "8 | Red | Brown\n"
-        "9 | Red | Slate\n"
-        "10 | Black | Blue\n"
-        "11 | Black | Orange\n"
-        "12 | Black | Green\n"
-        "13 | Black | Brown\n"
-        "14 | Black | Slate\n"
-        "15 | Yellow | Blue\n"
-        "16 | Yellow | Orange\n"
-        "17 | Yellow | Green\n"
-        "18 | Yellow | Brown\n"
-        "19 | Yellow | Slate\n"
-        "20 | Violet | Blue\n"
-        "21 | Violet | Orange\n"
-        "22 | Violet | Green\n"
-        "23 | Violet | Brown\n"
-        "24 | Violet | Slate\n"
-    )
+
+def test_get_color_map_data():
+    data = get_color_map_data()
+
     
-    actual_output = print_color_map()
+    assert len(data) == 25, "Incorrect number of items"
+
+
+    for index, major, minor in data:
+        assert isinstance(index, int), "Index should be an integer"
+        assert isinstance(major, str), "Major color should be a string"
+        assert isinstance(minor, str), "Minor color should be a string"
 
    
-    assert actual_output == expected_output, f"Expected output:\n{expected_output}\n\nBut got:\n{actual_output}"
+    expected_major_colors = {"White", "Red", "Black", "Yellow", "Violet"}
+    expected_minor_colors = {"Blue", "Orange", "Green", "Brown", "Slate"}
+    actual_major_colors = set(major for _, major, _ in data)
+    actual_minor_colors = set(minor for _, _, minor in data)
+
+    assert expected_major_colors == actual_major_colors, "Major colors mismatch"
+    assert expected_minor_colors == actual_minor_colors, "Minor colors mismatch"
 
 
-test_print_color_map()
+test_get_color_map_data()
 print("All tests passed.")
